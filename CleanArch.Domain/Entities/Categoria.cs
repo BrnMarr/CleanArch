@@ -1,8 +1,7 @@
-﻿using CleanArch.Domain.Entities;
-using CleanArch.Domain.Validation;
+﻿using CleanArch.Domain.Validation;
 using System.Collections.Generic;
 
-namespace CleanArch.Domain
+namespace CleanArch.Domain.Entities
 {
     public sealed class Categoria : EntityBase
     {
@@ -15,7 +14,7 @@ namespace CleanArch.Domain
 
         public Categoria(int id,string nome)
         {
-            DomainExceptionValidation.When(id < 0, "Invalid id value");
+            DomainExceptionValidation.When(id < 0, "Id com valor inválido.");
             Id = id;
             ValidateDomain(nome);
         }

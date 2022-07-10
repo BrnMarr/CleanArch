@@ -12,7 +12,7 @@ namespace CleanArch.Domain.Entities
 
         public Produto(int id, string nome, string descricao, decimal preco, int stock, string imagem)
         {
-            DomainExceptionValidation.When(id < 0, "valor do Id Invalido.");
+            DomainExceptionValidation.When(id < 0, "Id com valor inválido.");
             Id = id;
             ValidateDomain(nome, descricao, preco, stock, imagem);
 
@@ -43,7 +43,7 @@ namespace CleanArch.Domain.Entities
             
             DomainExceptionValidation.When(stock < 0, "ação Invalido stock.Name");
 
-            DomainExceptionValidation.When(imagem.Length > 250, "imagem invalida maximum 250 caracteres.");
+            DomainExceptionValidation.When(imagem?.Length > 250, "imagem invalida maximum 250 caracteres.");
 
             Nome = nome;
             Descricao = descricao;

@@ -26,7 +26,7 @@ namespace CleanArch.Domain.Entities
         public void UpdateProduto(string nome, string descricao, decimal preco, int stock, string imagem,int categoriaId)
         {
             ValidateDomain(nome, descricao, preco, stock, imagem);
-            CategoryId = categoriaId;
+            CategoriaId = categoriaId;
         }
 
         private void ValidateDomain(string nome, string descricao, decimal preco, int stock, string imagem) 
@@ -56,7 +56,7 @@ namespace CleanArch.Domain.Entities
         }
 
 
-        public int CategoryId { get; set; }
+        public int CategoriaId { get; set; }
         public Categoria Categoria { get; set; }
 
 

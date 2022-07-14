@@ -8,8 +8,8 @@ namespace CleanArch.Domain.Interfaces
     {
         Task<IEnumerable<Categoria>> GetCategorias();
         Task<Categoria> GetCategoriaId(int? id);
-        Task<Categoria> AddCategoria(Categoria categoria);
-        Task<Categoria> AtualizaCategoria(Categoria categoria);
+        Task<Categoria> CreateCategoria(Categoria categoria);
+        Task<Categoria> UpdateCategoria(Categoria categoria);
         Task<Categoria> RemoveCategoria(Categoria categoria);
 
 

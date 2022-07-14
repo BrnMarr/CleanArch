@@ -1,6 +1,7 @@
 ﻿using CleanArch.Domain.Entities;
 using CleanArch.Domain.Interfaces;
 using CleanArch.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,29 +18,43 @@ namespace CleanArch.Infra.Data.Repositories
             _produtoRepository = context;
         }
 
-        public Task<Produto> AddProduto(Produto Produto)
+        public async Task<Produto> CreateProduto(Produto produto)
         {
-            throw new NotImplementedException();
+            _produtoRepository.Add(produto);
+            await _produtoRepository.SaveChangesAsync();
+            return produto;
         }
 
-        public Task<Produto> AtualizaProduto(Produto Produto)
+        public async Task<Produto> UpdateProduto(Produto produto)
         {
-            throw new NotImplementedException();
+            _produtoRepository.Produtos.Update(produto);
+            await _produtoRepository.SaveChangesAsync();
+            return produto;
         }
 
-        public Task<Produto> GetProdutoId(int? id)
+        public async Task<Produto> GetProdutoId(int? id)
         {
-            throw new NotImplementedException();
+          return await _produtoRepository.Produtos.FindAsync(id);
+          
         }
 
-        public Task<IEnumerable<Produto>> GetProdutos()
+        public async Task<Produto> GetProdutoPorCategoria(int? id)
         {
-            throw new NotImplementedException();
+            return await _produtoRepository.Produtos.Include(c => c.Categoria).SingleOrDefaultAsync(p => p.Id == id);
+
         }
 
-        public Task<Produto> RemoveProduto(Produto Produto)
+        public async Task<IEnumerable<Produto>> GetProdutos()
         {
-            throw new NotImplementedException();
+            return await _produtoRepository.Produtos.ToListAsync();
+        }
+
+
+        public async Task<Produto> RemoveProduto(Produto produto)
+        {
+            _produtoRepository.Produtos.Remove(produto);
+            await _produtoRepository.SaveChangesAsync();
+            return produto;
         }
     }
 }

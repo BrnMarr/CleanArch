@@ -8,8 +8,8 @@ namespace CleanArch.Domain.Interfaces
     {
         Task<IEnumerable<Produto>> GetProdutos();
         Task<Produto> GetProdutoId(int? id);
-        Task<Produto> AddProduto(Produto Produto);
-        Task<Produto> AtualizaProduto(Produto Produto);
-        Task<Produto> RemoveProduto(Produto Produto);
+        Task<Produto> CreateProduto(Produto produto);
+        Task<Produto> UpdateProduto(Produto produto);
+        Task<Produto> RemoveProduto(Produto produto);
     }
 }

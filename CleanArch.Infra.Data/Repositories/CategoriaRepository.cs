@@ -1,6 +1,7 @@
 ﻿using CleanArch.Domain.Entities;
 using CleanArch.Domain.Interfaces;
 using CleanArch.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,29 +19,35 @@ namespace CleanArch.Infra.Data.Repositories
             _categoriaContext = context;
         }
 
-        public Task<Categoria> AddCategoria(Categoria categoria)
+        public async Task<Categoria> CreateCategoria(Categoria categoria)
         {
-            throw new NotImplementedException();
+            _categoriaContext.Add(categoria);
+            await _categoriaContext.SaveChangesAsync();
+            return categoria;
         }
 
-        public Task<Categoria> AtualizaCategoria(Categoria categoria)
+        public async Task<Categoria> UpdateCategoria(Categoria categoria)
         {
-            throw new NotImplementedException();
+            _categoriaContext.Categorias.Update(categoria);
+            await _categoriaContext.SaveChangesAsync();
+            return categoria;
         }
 
-        public Task<Categoria> GetCategoriaId(int? id)
+        public async Task<Categoria> GetCategoriaId(int? id)
         {
-            throw new NotImplementedException();
+            return await _categoriaContext.Categorias.FindAsync(id);
         }
 
-        public Task<IEnumerable<Categoria>> GetCategorias()
+        public async Task<IEnumerable<Categoria>> GetCategorias()
         {
-            throw new NotImplementedException();
+            return await _categoriaContext.Categorias.ToListAsync();
         }
 
-        public Task<Categoria> RemoveCategoria(Categoria categoria)
+        public async Task<Categoria> RemoveCategoria(Categoria categoria)
         {
-            throw new NotImplementedException();
+            _categoriaContext.Categorias.Remove(categoria);
+            await _categoriaContext.SaveChangesAsync();
+            return categoria;
         }
     }
 }

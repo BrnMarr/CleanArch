@@ -1,3 +1,4 @@
+using CleanArch.Domain.Entities;
 using FluentAssertions;
 using System;
 using Xunit;

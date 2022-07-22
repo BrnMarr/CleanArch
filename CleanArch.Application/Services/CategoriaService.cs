@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CleanArch.Application.Services
 {
-   public  class CategoriaService : ICategoriaService
+   public class CategoriaService : ICategoriaService
     {
         private ICategoriaRepository _categoriaRepository;
         private readonly IMapper _mapper;
@@ -52,7 +52,6 @@ namespace CleanArch.Application.Services
             var categoriaEntity = _categoriaRepository.GetCategoriaId(id).Result;
             await _categoriaRepository.RemoveCategoria(categoriaEntity);
         }
-
      
-    }
+   }
 }

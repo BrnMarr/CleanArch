@@ -20,7 +20,7 @@ namespace CleanArch.Application.DTOs
         [MinLength(5)]
         [MaxLength(200)]
         [DisplayName("Descrição")]
-        public string Description { get; set; }
+        public string Descricao { get; set; }
 
         [Required(ErrorMessage = "campo Valor obrigatório")]
         [Column(TypeName = "decimal(18,2)")]

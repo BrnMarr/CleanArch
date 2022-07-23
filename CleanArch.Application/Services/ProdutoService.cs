@@ -17,7 +17,7 @@ namespace CleanArch.Application.Services
         private readonly IMapper _mapper;
         public ProdutoService(IProdutoRepository produtoRepository, IMapper mapper)
         {
-            _produtoReporitory = produtoRepository;
+            _produtoReporitory = produtoRepository ?? throw new ArgumentNullException(nameof(produtoRepository));
             _mapper = mapper;
         }
 
@@ -26,6 +26,7 @@ namespace CleanArch.Application.Services
             var produtoEntity = await _produtoReporitory.GetProdutos();
             return _mapper.Map<IEnumerable<ProdutoDTO>>(produtoEntity);
         }
+
         public async Task<ProdutoDTO> GetProdutoId(int? id)
         {
             var produtoEntity = await _produtoReporitory.GetProdutoId(id);
@@ -49,5 +50,6 @@ namespace CleanArch.Application.Services
             var produtoEntity = _produtoReporitory.GetProdutoId(id).Result;
             await _produtoReporitory.RemoveProduto(produtoEntity);
         }
+
     }
 }

@@ -13,42 +13,42 @@ namespace CleanArch.Application.Services
 {
     public class ProdutoService : IProdutoService
     {
-        private IProdutoRepository _produtoReporitory;
+        private IProdutoRepository _produtoRepository;
         private readonly IMapper _mapper;
         public ProdutoService(IProdutoRepository produtoRepository, IMapper mapper)
         {
-            _produtoReporitory = produtoRepository ?? throw new ArgumentNullException(nameof(produtoRepository));
+            _produtoRepository = produtoRepository ?? throw new ArgumentNullException(nameof(produtoRepository));
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<ProdutoDTO>> GetProdutos()
         {
-            var produtoEntity = await _produtoReporitory.GetProdutos();
+            var produtoEntity = await _produtoRepository.GetProdutos();
             return _mapper.Map<IEnumerable<ProdutoDTO>>(produtoEntity);
         }
 
         public async Task<ProdutoDTO> GetProdutoId(int? id)
         {
-            var produtoEntity = await _produtoReporitory.GetProdutoId(id);
+            var produtoEntity = await _produtoRepository.GetProdutoId(id);
             return _mapper.Map<ProdutoDTO>(produtoEntity);
         }
 
         public async Task Add(ProdutoDTO produtoDto)
         {
             var produtoEntity = _mapper.Map<Produto>(produtoDto);
-            await _produtoReporitory.CreateProduto(produtoEntity);
+            await _produtoRepository.CreateProduto(produtoEntity);
         }
 
         public async Task Update(ProdutoDTO produtoDto)
         {
             var produtoEntity = _mapper.Map<Produto>(produtoDto);
-            await _produtoReporitory.UpdateProduto(produtoEntity);
+            await _produtoRepository.UpdateProduto(produtoEntity);
         }
 
         public async Task Remove(int? id)
         {
-            var produtoEntity = _produtoReporitory.GetProdutoId(id).Result;
-            await _produtoReporitory.RemoveProduto(produtoEntity);
+            var produtoEntity = _produtoRepository.GetProdutoId(id).Result;
+            await _produtoRepository.RemoveProduto(produtoEntity);
         }
 
     }

@@ -12,5 +12,4 @@
   <ItemGroup>
     <ProjectReference Include="..\CleanArch.Infra.IOC\CleanArch.Infra.IOC.csproj" />
   </ItemGroup>
-
 </Project>

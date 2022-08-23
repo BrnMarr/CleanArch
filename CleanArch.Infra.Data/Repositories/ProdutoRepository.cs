@@ -34,14 +34,12 @@ namespace CleanArch.Infra.Data.Repositories
 
         public async Task<Produto> GetProdutoId(int? id)
         {
-          return await _produtoRepository.Produtos.FindAsync(id);
-          
+            return await _produtoRepository.Produtos.Include(c => c.Categoria).SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<Produto> GetProdutoPorCategoria(int? id)
         {
             return await _produtoRepository.Produtos.Include(c => c.Categoria).SingleOrDefaultAsync(p => p.Id == id);
-
         }
 
         public async Task<IEnumerable<Produto>> GetProdutos()

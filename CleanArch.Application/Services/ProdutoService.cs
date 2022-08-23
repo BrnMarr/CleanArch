@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CleanArch.Application.DTOs;
 using CleanArch.Application.Interfaces;
+using CleanArch.Application.Models.Produtos.Commands;
 using CleanArch.Application.Models.Produtos.Queries;
 using MediatR;
 using System;
@@ -33,29 +34,52 @@ namespace CleanArch.Application.Services
             return _mapper.Map<IEnumerable<ProdutoDTO>>(result);
         }
 
-        //public async Task<ProdutoDTO> GetProdutoId(int? id)
-        //{
-        //    var produtoEntity = await _produtoRepository.GetProdutoId(id);
-        //    return _mapper.Map<ProdutoDTO>(produtoEntity);
-        //}
+        public async Task<ProdutoDTO> GetProdutoId(int? id)
+        {
+            var produtoPorId = new GetProdutoPorIdQuery(id.Value);
 
-        //public async Task Add(ProdutoDTO produtoDto)
-        //{
-        //    var produtoEntity = _mapper.Map<Produto>(produtoDto);
-        //    await _produtoRepository.CreateProduto(produtoEntity);
-        //}
+            if (produtoPorId == null)
+                throw new Exception("Não foi possivel consultar o produto.");
+           
+            var result = await _madiator.Send(produtoPorId);
+            
+            return _mapper.Map<ProdutoDTO>(result);
+        }
 
-        //public async Task Update(ProdutoDTO produtoDto)
-        //{
-        //    var produtoEntity = _mapper.Map<Produto>(produtoDto);
-        //    await _produtoRepository.UpdateProduto(produtoEntity);
-        //}
+        public async Task<ProdutoDTO> GetCategoriaPorId(int? id)
+        {
+            var produtoPorId = new GetProdutoPorIdQuery(id.Value);
 
-        //public async Task Remove(int? id)
-        //{
-        //    var produtoEntity = _produtoRepository.GetProdutoId(id).Result;
-        //    await _produtoRepository.RemoveProduto(produtoEntity);
-        //}
+            if (produtoPorId == null)
+                throw new Exception("Não foi possivel consultar o produto.");
+
+            var result = await _madiator.Send(produtoPorId);
+
+            return _mapper.Map<ProdutoDTO>(result);
+        }
+
+        public async Task Add(ProdutoDTO produtoDto)
+        {
+            var produtoCreatCommand = _mapper.Map<ProdutoCreateCommand>(produtoDto);
+            await _madiator.Send(produtoCreatCommand);
+            
+        }
+
+        public async Task Update(ProdutoDTO produtoDto)
+        {
+            var produtoCreatCommand = _mapper.Map<ProdutoUpdateCommand>(produtoDto);
+            await _madiator.Send(produtoCreatCommand);
+        }
+
+        public async Task Remove(int? id)
+        {
+            var produtoRemoveCommand = new ProdutoRemoveCommand(id.Value);
+
+            if (produtoRemoveCommand == null)
+                throw new Exception("Não foi possivel deletar o produto.");
+
+            await _madiator.Send(produtoRemoveCommand);
+        }
 
     }
 }

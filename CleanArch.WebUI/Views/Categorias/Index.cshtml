@@ -10,7 +10,8 @@
         <div>
             <div class="pull-left">
                 <a asp-action="Create" class="btn btn-primary">
-                    <span title="Register New" class="fas fa-plus"></span> Registrar Novo
+                    <span title="Nova Categoria" class="fas fa-plus">
+                    </span>Nova Categoria
                 </a>
             </div>
         </div>
@@ -35,16 +36,18 @@
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" class="btn btn-warning">
-                            <span class="fas fa-edit">Edit</span>
+                        <a asp-action="Edit" asp-route-id="@item.Id" title="Editar" class="btn btn-warning">
+                            <span class="fas fa-edit">Editar</span>
                         </a>
 
-                        <a asp-action="Details" asp-route-id="@item.Id" title="Details" class="btn btn-primary">
-                            <span class="fas fa-search">Details</span>
+                        <a asp-action="Details" asp-route-id="@item.Id" title="Detalhes" class="btn btn-primary">
+                            <span class="fas fa-search">Detalhes</span>
                         </a>
 
-                        <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-danger">
-                            <span class="fas fa-trash-alt">Delete</span>
+                        <a asp-action="Delete" asp-route-id="@item.Id" title="Deletar" class="btn btn-danger">
+                            <span class="fas fa-trash-alt">Deletar
+                            
+                            </span>
                         </a>
                     </td>
                 </tr>

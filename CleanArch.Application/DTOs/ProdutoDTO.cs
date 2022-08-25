@@ -26,19 +26,19 @@ namespace CleanArch.Application.DTOs
         [Column(TypeName = "decimal(18,2)")]
         [DisplayFormat(DataFormatString = "{0:C2}")]
         [DataType(DataType.Currency)]
-        [DisplayName("Valor")]
-        public decimal Valor { get; set; }
+        [DisplayName("Preço")]
+        public decimal Preco { get; set; }
 
         [Required(ErrorMessage = "campo Ação obrigatório")]
         [Range(1, 9999)]
         [DisplayName("Ação")]
-        public int Acao { get; set; }
+        public int Stock { get; set; }
 
         [MaxLength(250)]
         [DisplayName("Imagem Produto")]
-        public string Image { get; set; }
+        public string Imagem { get; set; }
 
-        public Categoria Category { get; set; }
+        public Categoria Categoria { get; set; }
 
         [DisplayName("Categorias")]
         public int CategoriaId { get; set; }

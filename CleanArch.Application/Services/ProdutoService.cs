@@ -80,6 +80,5 @@ namespace CleanArch.Application.Services
 
             await _madiator.Send(produtoRemoveCommand);
         }
-
     }
 }

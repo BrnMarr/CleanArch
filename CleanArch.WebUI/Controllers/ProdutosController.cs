@@ -82,5 +82,19 @@ namespace CleanArch.WebUI.Controllers
         }
 
 
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var produtoDto = await _produtoService.GetProdutoId(id);
+
+            if (produtoDto == null)
+                return NotFound();           
+
+            return View(produtoDto);
+        }
+
+
     }
 }

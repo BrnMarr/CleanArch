@@ -1,0 +1,23 @@
+﻿@model CleanArch.Application.DTOs.ProdutoDTO
+
+<h3>Produto Detalhes</h3>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dd class="col-sm-2">
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a> |  <a asp-action="Index">Voltar</a>
+</div>
+

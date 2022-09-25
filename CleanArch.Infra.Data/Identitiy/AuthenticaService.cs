@@ -26,16 +26,27 @@ namespace CleanArch.Infra.Data.Identitiy
 
             return result.Succeeded;
         }
-
-        
-        public Task<bool> RegisterUser(string email, string password)
+                
+        public async Task<bool> RegisterUser(string email, string password)
         {
-            throw new NotImplementedException();
+            var applicationUser = new ApplicationUser 
+            {
+               UserName = email,
+               Email = email,
+            };
+
+            var result = await _userManager.CreateAsync(applicationUser, password);
+
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(applicationUser, isPersistent: false);
+            }
+            return result.Succeeded;
         }
 
-        public Task Logout()
+        public async Task Logout()
         {
-            throw new NotImplementedException();
+            await _signInManager.SignOutAsync();
         }
 
     }

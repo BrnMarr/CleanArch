@@ -24,7 +24,6 @@ namespace CleanArch.WebUI.Controllers
             return View(categorias);
         }
 
-
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,8 +34,7 @@ namespace CleanArch.WebUI.Controllers
             if (categoryDTO == null)
                 return NotFound();
 
-            return View(categoryDTO);
-         
+            return View(categoryDTO);         
         }
 
 

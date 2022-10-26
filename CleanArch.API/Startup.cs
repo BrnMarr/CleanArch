@@ -22,6 +22,9 @@ namespace CleanArch.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInfraStructureAPI(Configuration);
+                        
+            // ativar autenticacao e validar o token
+            services.AddInfraStructureJWT(Configuration);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

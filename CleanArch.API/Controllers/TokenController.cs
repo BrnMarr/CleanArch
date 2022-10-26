@@ -32,7 +32,7 @@ namespace CleanArch.API.Controllers
         {
             var result = await _authenticate.Authenticate(userInfo.Email, userInfo.Password);
 
-            if (result)
+            if (!result)
                 return GenerateToken(userInfo);
                // return Ok($"User { userInfo.Email} login sucesses");
             else

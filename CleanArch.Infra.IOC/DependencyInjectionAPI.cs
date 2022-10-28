@@ -15,7 +15,7 @@ using System;
 
 namespace CleanArch.Infra.IOC
 {
-  public static  class DependencyInjectionAPI
+  public static class DependencyInjectionAPI
     {
         public static IServiceCollection AddInfraStructureAPI(this IServiceCollection services, IConfiguration configuration)
         {

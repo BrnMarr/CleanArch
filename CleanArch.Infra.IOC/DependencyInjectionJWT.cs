@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CleanArch.Infra.IOC
 {
@@ -29,7 +29,7 @@ namespace CleanArch.Infra.IOC
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     // Valores validos 
-                    ValidIssuer = configuration["JWT:Issuer"],
+                    ValidIssuer = configuration["JWT:Issuer"],           
                     ValidAudience = configuration["JWT:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:SecretKey"])),
                     ClockSkew = TimeSpan.Zero

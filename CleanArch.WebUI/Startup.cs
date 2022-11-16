@@ -52,7 +52,8 @@ namespace CleanArch.WebUI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Categorias}/{action=Index}/{id?}");
+                    //pattern: "{controller=Categorias}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}");
             });
         }
     }

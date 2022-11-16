@@ -1,0 +1,67 @@
+﻿@model CleanArch.WebUI.Models.LoginViewModel
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CleanArch.WebUI</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+</br>
+<div class="row">
+    <div class="col-md-8">
+
+        <form asp-controller="Base" asp-action="Index" method="post" class="form-horizontal">
+
+            @*<input type="hidden" asp-for="ReturnUrl" />*@
+
+            <div asp-validation-summary="All" class="text-danger">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="Password" class="col-md-2 control-label"></label>
+
+                <div class="col-md-10">
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-outline-dark">Login</button>
+                </div>
+            </div>
+           
+            @*<p>
+                <a asp-action="Register">Register as a new user?</a>
+            </p>*@
+
+        </form>
+     </div>
+   
+</div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @DateTime.Now.Year - Projeto Clean Arch -
+        </div>
+        @*<a asp-area="" asp-controller="Categorias" asp-action="Index">Categorias</a>*@
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+</body>
+</html>

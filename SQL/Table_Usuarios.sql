@@ -1,7 +1,7 @@
 
 --DROP TABLE Empresa
 
-CREATE TABLE Empresas
+CREATE TABLE Empresa
 (
    idEmpresa int identity(1,1) not null,
    Nome varchar(50) null,
@@ -17,7 +17,7 @@ GO
 CREATE TABLE Perfil
 (
    idPerfil int identity(1,1) not null,
-   idEmpresa int not null,
+   idTipoPerfil int null,
    Nome varchar(50) null,
    DataExpiracao datetime2(7) null,
    HorarioInicio datetime2(7) null, 
@@ -36,6 +36,7 @@ CREATE TABLE Perfil
    Deletar bit null,
    Consultar bit null,
    Ativo bit null,
+   
 
 CONSTRAINT [PK_Perfil] PRIMARY KEY CLUSTERED 
 (
@@ -44,39 +45,39 @@ CONSTRAINT [PK_Perfil] PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [Perfil] WITH CHECK ADD CONSTRAINT [FK_Perfil_idEmpresa] FOREIGN KEY([idEmpresa])
-REFERENCES [Empresas] ([idEmpresa])
+ALTER TABLE [Perfil] WITH CHECK ADD CONSTRAINT [FK_Perfil_idUsuario] FOREIGN KEY([idUsuario])
+REFERENCES [Usuario] ([idUsuario])
 GO
 
-CREATE TABLE PerfilPermissao
+CREATE TABLE PerfilAcesso
 (
-   idPerfilPermissao int identity(1,1) not null,
+   idPerfilAcesso int identity(1,1) not null,
    idPerfil int not null,
    Nome varchar(30) not null,
-   RotaPrincipal bit null,
-   RotaSecundaria bit null,
+   RotaPrincipal varchar(15),
+   RotaSecundaria varchar(15) null,
 
-CONSTRAINT [PK_PerfilPermissao] PRIMARY KEY CLUSTERED 
+CONSTRAINT [PK_idPerfilAcesso] PRIMARY KEY CLUSTERED 
 (
-	[idPerfilPermissao] ASC
+	[idPerfilAcesso] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
-
-ALTER TABLE [PerfilPermissao] WITH CHECK ADD CONSTRAINT [FK_PerfilPermissao_idPerfil] FOREIGN KEY([idPerfil])
+ALTER TABLE [PerfilAcesso] WITH CHECK ADD CONSTRAINT [FK_PerfilAcesso_idPerfil] FOREIGN KEY([idPerfil])
 REFERENCES [Perfil] ([idPerfil])
 GO
 
 
 
-CREATE TABLE Usuarios
+CREATE TABLE Usuario
 (
-   idUsuario int identity(1,1) not null,
-   idPerfil int not null,
-   Nome varchar(50) null,
-   Senha varchar(30) null,
-   Ativo bit null,
+   [idUsuario] int identity(1,1) not null,
+   [idEmpresa] int not null,  
+   [Nome] varchar (50) null,
+   [Email] varchar (30) NULL,
+   [Senha] varchar(30) null,
+   [Ativo] bit null,
 CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
 (
 	[idUsuario] ASC
@@ -84,8 +85,6 @@ CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
-
-ALTER TABLE [Usuarios] WITH CHECK ADD CONSTRAINT [FK_Usuarios_idPerfil] FOREIGN KEY([idPerfil])
-REFERENCES [Perfil] ([idPerfil])
+ALTER TABLE [Usuario] WITH CHECK ADD CONSTRAINT [FK_Usuario_idEmpresa] FOREIGN KEY([idEmpresa])
+REFERENCES [Empresa] ([idEmpresa])
 GO
-

@@ -19,7 +19,9 @@ namespace CleanArch.Infra.Data.Context
 
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Produto> Produtos { get; set; }
-
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Perfil> Perfil { get; set; }
+        public DbSet<Empresa> Empresa { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

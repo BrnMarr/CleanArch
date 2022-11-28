@@ -34,7 +34,7 @@ namespace CleanArch.Infra.Data.Repositories
 
         public async Task<Produto> GetProdutoId(int? id)
         {
-          return await _produtoRepository.Produtos.FindAsync(id);
+            return await _produtoRepository.Produtos.FindAsync(id);
           
         }
 

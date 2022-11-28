@@ -15,7 +15,6 @@ namespace CleanArch.Domain.Entities
             DomainExceptionValidation.When(id < 0, "Id com valor inválido.");
             Id = id;
             ValidateDomain(nome, descricao, preco, stock, imagem);
-
         }
 
         public Produto(string nome, string descricao, decimal preco, int stock, string imagem)
@@ -50,8 +49,6 @@ namespace CleanArch.Domain.Entities
             Preco = preco;
             Stock = stock;
             Imagem = imagem;
-
-
 
         }
 

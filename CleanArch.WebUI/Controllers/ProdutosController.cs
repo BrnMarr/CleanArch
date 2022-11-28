@@ -23,7 +23,7 @@ namespace CleanArch.WebUI.Controllers
 
             ViewData["Title"] = "Gestão de Produtos"; 
             
-            return View(produtos);
+            return PartialView(produtos);
         }
     }
 }

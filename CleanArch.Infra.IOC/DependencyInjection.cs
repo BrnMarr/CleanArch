@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace CleanArch.Infra.IOC
 {
-   public  static class DependencyInjection
+    public  static class DependencyInjection
    {
         public static IServiceCollection AddInfraStructure(this IServiceCollection services, IConfiguration configuration)
         {
@@ -27,6 +27,12 @@ namespace CleanArch.Infra.IOC
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IProdutoService, ProdutoService>();
             services.AddScoped<ICategoriaService, CategoriaService>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IPerfilService, PerfilService>();
+            services.AddScoped<IPerfilRepository, PerfilRepository>();
+
+
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             return services;

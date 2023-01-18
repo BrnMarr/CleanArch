@@ -19,12 +19,8 @@ namespace CleanArch.WebUI.Controllers
     
         public IActionResult Index(LoginViewModel login)
         {
-            var usuario = _usuarioService.GetUsuarioLogin(login.Email, login.Password);
-                   
-            if (usuario != null)
-            {
-                var painelUsuario = _perfilService.GetPerfil(usuario.idUsuario);
-            }
+            var usuario = _usuarioService.GetUsuarioLogin(login.Email, login.Password);               
+
 
             return View();
         }
